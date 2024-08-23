@@ -1,0 +1,26 @@
+
+# CI/published_xray.yml
+default: 
+  tags:
+    - rfw
+
+stages:
+  - publish
+
+
+
+
+# Job pour envoyer le fichier ZIP à Xray
+upload-to-xray:
+  stage: publish
+  image: curlimages/curl:latest
+  script:
+    - echo "Uploading test results to Xray......."
+    - |
+      curl -H "Content-Type: application/json" \
+           -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5hbnQiOiI4MDI2ZTliNy04ZGRiLTM4MzctOGVmMS04ZDllM2RkMjFiZDUiLCJhY2NvdW50SWQiOiI3MTIwMjA6YWQwNjExNTItNTkyZS00YTU3LTkxZjctYWM2ZGUzMzM0NjY1IiwiaXNYZWEiOmZhbHNlLCJpYXQiOjE3MTY5MDgzNjAsImV4cCI6MTcxNjk5NDc2MCwiYXVkIjoiOTcxNDlDRUNFNkYzNDFCN0I0ODlCMzNFOUUyNTVGREYiLCJpc3MiOiJjb20ueHBhbmRpdC5wbHVnaW5zLnhyYXkiLCJzdWIiOiI5NzE0OUNFQ0U2RjM0MUI3QjQ4OUIzM0U5RTI1NUZERiJ9.9-sjZIu9_y8Z0hXBMoLXKFmy4FDY4UnSUTxb2UXZ7h0" \
+           -F "file=@results/custom_results.json" \
+           "https://xray.cloud.getxray.app/api/v1/import/execution"
+  
+  only:
+    - master

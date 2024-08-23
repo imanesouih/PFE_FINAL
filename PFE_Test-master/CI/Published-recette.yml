@@ -1,0 +1,25 @@
+# deploy-recette.yml
+
+# Étape de test pour l'environnement de recette
+default: 
+  tags:
+    - rfw
+stages:
+  - test
+  - deploy
+  - publish
+
+test-recette:
+  stage: test
+  image: registry.gitlab.com/pfe8320617/pfe_test:robotframework
+  script:
+    - echo "Running tests for recette environment..."
+    - robot --variablefile ./environments/recette.yml --listener reports/ListenerBase.py --outputdir reports Tests . || true
+
+deploy-recette:
+  stage: deploy
+  image: registry.gitlab.com/pfe8320617/pfe_test:robotframework
+  script:
+    - python3 send_email.py recette
+  only:
+    - master

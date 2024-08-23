@@ -1,0 +1,31 @@
+
+# .gitlab-ci.yml
+default: 
+  tags:
+    - rfw
+stages:
+  - triggers
+    
+# include:
+#   - local: 'CI/Published-preprod.yml'  # Inclure le déploiement sur l'environnement de pré-production
+#   - local: 'CI/Published-recette.yml'  # Inclure le déploiement sur l'environnement de recette
+#   - local: 'CI/Published-Xray.yml'  # Inclure le template pour publier à Xray
+
+preprod_trigger:
+  stage: triggers
+  trigger: 
+    include:
+      - local: CI/Published-preprod.yml
+  rules: 
+    - if: $Cron == "preprod"
+
+recette_trigger:
+  stage: triggers
+  trigger: 
+    include:
+      - local: CI/Published-recette.yml
+  rules: 
+    - if: $Cron == "recette"
+
+workflow: 
+  name: execution des tests en $Cron

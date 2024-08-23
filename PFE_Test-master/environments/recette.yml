@@ -1,0 +1,25 @@
+Projet: FT
+email:
+  smtp_server: smtp.preprod.example.com
+  port: 587
+  use_tls: true
+  username: preprod_email_user
+  password: preprod_email_password
+to_addresses:
+  - hamdioumayma9871@gmail.com
+
+DBHost: "ep-odd-mouse-a4br12y4-pooler.us-east-1.aws.neon.tech"
+DBName: "verceldb"
+DBPass: "7axBzIu0bVng"
+DBPort: "5432"
+DBUser: "default"
+BaseUrl: "https://testing-auto-git-main-pfe2024s-projects.vercel.app"
+CreateTaskEndpoint: "/create-task"
+GetTaskEndpoint: "/get-task"
+CreateTokenEndpoint: "/tasks/auth"
+url: "https://testing-auto-git-main-pfe2024s-projects.vercel.app/tasks/"
+auth_url: "https://testing-auto-git-main-pfe2024s-projects.vercel.app/tasks/auth"
+# Informations générales supplémentaires
+Project: 'FT'
+environment: 'Recette'
+Testeur: 'SOUIH Imane'

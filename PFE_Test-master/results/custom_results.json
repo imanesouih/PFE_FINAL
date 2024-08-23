@@ -1,0 +1,20 @@
+{
+    "summary": {
+        "info": {
+            "project": "FT",
+            "summary": "Your summary here",
+            "description": "Your description here",
+            "environment": "Recette",
+            "user": "SOUIH Imane"
+        }
+    },
+    "tests": [
+        {
+            "testKey": "FT-2",
+            "start": "2024-05-23 11:34:51",
+            "finish": "20240523 11:35:15.096",
+            "comment": "",
+            "status": "PASS"
+        }
+    ]
+}

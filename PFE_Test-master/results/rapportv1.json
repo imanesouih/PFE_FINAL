@@ -1,0 +1,21 @@
+{
+    "tests": [
+        {
+            "testKey": "FT-2",
+            "status": "FAIL",
+            "start": "2024-04-25 14:45:43",
+            "finish": "20240425 14:45:51.777",
+            "comment": "Element with locator 'id:APjFqb' not found."
+        },
+        {
+            "testKey": "FT-3",
+            "status": "PASS",
+            "start": "2024-04-25 14:45:43",
+            "finish": "20240425 14:46:09.729",
+            "comment": ""
+        }
+    ],
+    "total_tests": 7,
+    "total_passed": 6,
+    "total_failed": 1
+}

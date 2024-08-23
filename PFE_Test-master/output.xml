@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0 (Python 3.12.3 on win32)" generated="2024-05-23T12:11:05.762904" rpa="false" schemaversion="5">
+<suite id="s1" name="Tests" source="C:\Users\hp\Downloads\FrameworkTest-master\FrameworkTest-master\Tests">
+<suite id="s1-s1" name="Api Tests" source="C:\Users\hp\Downloads\FrameworkTest-master\FrameworkTest-master\Tests\api_tests.robot">
+<kw name="Generate Auth Token" type="SETUP">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-05-23T12:11:06.254997" level="INFO">${auth_data} = {'username': 'imane', 'email': 'imane@example.com', 'password': 'motdepasse123'}</msg>
+<var>${auth_data}</var>
+<arg>username=${username}</arg>
+<arg>email=${email}</arg>
+<arg>password=${password}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-05-23T12:11:06.254214" elapsed="0.000783"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-05-23T12:11:06.254997" level="INFO">${auth_headers} = {'Content-Type': 'application/json'}</msg>
+<var>${auth_headers}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-05-23T12:11:06.254997" elapsed="0.000000"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2024-05-23T12:11:07.340059" level="INFO">POST Request : url=https://testing-auto-git-main-pfe2024s-projects.vercel.app/tasks/auth 
+ path_url=/tasks/auth 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '80'} 
+ body=b'{"username": "imane", "email": "imane@example.com", "password": "motdepasse123"}' 
+ </msg>
+<msg time="2024-05-23T12:11:07.340966" level="INFO">POST Response : url=https://testing-auto-git-main-pfe2024s-projects.vercel.app/tasks/auth 
+ status=200, reason=OK 
+ headers={'Cache-Control': 'public, max-age=0, must-revalidate', 'Connection': 'keep-alive', 'Content-Length': '172', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Thu, 23 May 2024 11:11:07 GMT', 'Etag': 'W/"ac-pQxrYWbAjVYi2gcc6a+gHfStY1s"', 'Server': 'Vercel', 'Strict-Transport-Security': 'max-age=63072000; includeSubDomains; preload', 'X-Powered-By': 'Express', 'X-Robots-Tag': 'noindex', 'X-Vercel-Cache': 'MISS', 'X-Vercel-Id': 'cdg1::iad1::5thfq-1716462667598-53802c2011d7'} 
+ body={"access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImltYW5lIiwiaWF0IjoxNzE2NDYyNjY3LCJleHAiOjE3MTY0NjYyNjd9.9eQQVEF0SE7sP4bU3Cd_FMSqu5Fc_KS46rEnkr9AKUY"} 
+ </msg>
+<msg time="2024-05-23T12:11:07.340966" level="INFO">${auth_response} = &lt;Response [200]&gt;</msg>
+<var>${auth_response}</var>
+<arg>${BaseUrl}${CreateTokenEndpoint}</arg>
+<arg>json=${auth_data}</arg>
+<arg>headers=${auth_headers}</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2024-05-23T12:11:06.254997" elapsed="1.085969"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2024-05-23T12:11:07.346177" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${auth_response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2024-05-23T12:11:07.340966" elapsed="0.005211"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-05-23T12:11:07.349165" level="INFO">${token} = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImltYW5lIiwiaWF0IjoxNzE2NDYyNjY3LCJleHAiOjE3MTY0NjYyNjd9.9eQQVEF0SE7sP4bU3Cd_FMSqu5Fc_KS46rEnkr9AKUY</msg>
+<var>${token}</var>
+<arg>${auth_response.json()['access_token']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-05-23T12:11:07.347176" elapsed="0.001989"/>
+</kw>
+<kw name="Set Global Variable" owner="BuiltIn">
+<msg time="2024-05-23T12:11:07.349165" level="INFO">${AuthToken} = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImltYW5lIiwiaWF0IjoxNzE2NDYyNjY3LCJleHAiOjE3MTY0NjYyNjd9.9eQQVEF0SE7sP4bU3Cd_FMSqu5Fc_KS46rEnkr9AKUY</msg>
+<arg>${AuthToken}</arg>
+<arg>${token}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="PASS" start="2024-05-23T12:11:07.349165" elapsed="0.000000"/>
+</kw>
+<arg>imane</arg>
+<arg>imane@example.com</arg>
+<arg>motdepasse123</arg>
+<status status="PASS" start="2024-05-23T12:11:06.253210" elapsed="1.095955"/>
+</kw>
+<test id="s1-s1-t1" name="Create New Task" line="29">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-05-23T12:11:07.356655" level="INFO">${headers} = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImltYW5lIiwiaWF0IjoxNzE2NDYyNjY3LCJleHAiOjE3MTY0NjYyNjd9.9eQQVEF0SE7sP4bU3Cd_FMSqu5Fc_KS46rEnkr9AKUY', 'Content-Type': 'a...</msg>
+<var>${headers}</var>
+<arg>Authorization=Bearer ${AuthToken}</arg>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-05-23T12:11:07.355800" elapsed="0.001665"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-05-23T12:11:07.359259" level="INFO">${task_data} = {'title': 'Acheter des NuGGET', 'description': 'Acheter du lait, des œufs et du pain.', 'deadline': '2024-01-01', 'UserId': '1'}</msg>
+<var>${task_data}</var>
+<arg>title=Acheter des NuGGET</arg>
+<arg>description=Acheter du lait, des œufs et du pain.</arg>
+<arg>deadline=2024-01-01</arg>
+<arg>UserId=1</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-05-23T12:11:07.358090" elapsed="0.001169"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2024-05-23T12:11:08.403576" level="INFO">POST Request : url=https://testing-auto-git-main-pfe2024s-projects.vercel.app/tasks//create-task (redirected) 
+ path_url=/tasks//create-task 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImltYW5lIiwiaWF0IjoxNzE2NDYyNjY3LCJleHAiOjE3MTY0NjYyNjd9.9eQQVEF0SE7sP4bU3Cd_FMSqu5Fc_KS46rEnkr9AKUY', 'Content-Type': 'application/json', 'Content-Length': '133'} 
+ body=b'{"title": "Acheter des NuGGET", "description": "Acheter du lait, des \\u0153ufs et du pain.", "deadline": "2024-01-01", "UserId": "1"}' 
+ </msg>
+<msg time="2024-05-23T12:11:08.404088" level="INFO">POST Response : url=https://testing-auto-git-main-pfe2024s-projects.vercel.app/tasks/create-task 
+ status=201, reason=Created 
+ headers={'Cache-Control': 'public, max-age=0, must-revalidate', 'Connection': 'keep-alive', 'Content-Length': '147', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Thu, 23 May 2024 11:11:08 GMT', 'Etag': 'W/"93-Wm9d+33tccK2psPT+4p+9ocD6ow"', 'Server': 'Vercel', 'Strict-Transport-Security': 'max-age=63072000; includeSubDomains; preload', 'X-Powered-By': 'Express', 'X-Robots-Tag': 'noindex', 'X-Vercel-Cache': 'MISS', 'X-Vercel-Id': 'cdg1::iad1::wvfpf-1716462668640-b9af4bd2387a'} 
+ body={"taskid":893,"title":"Acheter des NuGGET","description":"Acheter du lait, des œufs et du pain.","deadline":"2024-01-01T00:00:00.000Z","userid":1} 
+ </msg>
+<msg time="2024-05-23T12:11:08.404181" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>${url}${CreateTaskEndpoint}</arg>
+<arg>json=${task_data}</arg>
+<arg>headers=${headers}</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2024-05-23T12:11:07.361963" elapsed="1.042218"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2024-05-23T12:11:08.407409" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>201</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2024-05-23T12:11:08.405180" elapsed="0.002229"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-05-23T12:11:08.410409" level="INFO">{"taskid":893,"title":"Acheter des NuGGET","description":"Acheter du lait, des \xc5\x93ufs et du pain.","deadline":"2024-01-01T00:00:00.000Z","userid":1}</msg>
+<arg>${response.content}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-05-23T12:11:08.408409" elapsed="0.002000"/>
+</kw>
+<doc>Test creating a new task</doc>
+<status status="PASS" start="2024-05-23T12:11:07.349165" elapsed="1.062241"/>
+</test>
+<test id="s1-s1-t2" name="Get Task Details" line="46">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-05-23T12:11:08.413979" level="INFO">${task_id} = 2</msg>
+<var>${task_id}</var>
+<arg>2</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-05-23T12:11:08.412977" elapsed="0.001002"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-05-23T12:11:08.414980" level="INFO">${headers} = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImltYW5lIiwiaWF0IjoxNzE2NDYyNjY3LCJleHAiOjE3MTY0NjYyNjd9.9eQQVEF0SE7sP4bU3Cd_FMSqu5Fc_KS46rEnkr9AKUY', 'Content-Type': 'a...</msg>
+<var>${headers}</var>
+<arg>Authorization=Bearer ${AuthToken}</arg>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-05-23T12:11:08.413979" elapsed="0.001366"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-05-23T12:11:08.415984" level="INFO">${url} = https://testing-auto-git-main-pfe2024s-projects.vercel.app/tasks//get-task/2</msg>
+<var>${url}</var>
+<arg>${url}${GetTaskEndpoint}/${task_id}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-05-23T12:11:08.415504" elapsed="0.000480"/>
+</kw>
+<kw name="GET" owner="RequestsLibrary">
+<msg time="2024-05-23T12:11:09.404952" level="INFO">GET Request : url=https://testing-auto-git-main-pfe2024s-projects.vercel.app/tasks//get-task/2 (redirected) 
+ path_url=/tasks//get-task/2 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImltYW5lIiwiaWF0IjoxNzE2NDYyNjY3LCJleHAiOjE3MTY0NjYyNjd9.9eQQVEF0SE7sP4bU3Cd_FMSqu5Fc_KS46rEnkr9AKUY', 'Content-Type': 'application/json'} 
+ body=None 
+ </msg>
+<msg time="2024-05-23T12:11:09.404952" level="INFO">GET Response : url=https://testing-auto-git-main-pfe2024s-projects.vercel.app/tasks/get-task/2 
+ status=200, reason=OK 
+ headers={'Cache-Control': 'public, max-age=0, must-revalidate', 'Connection': 'keep-alive', 'Content-Length': '146', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Thu, 23 May 2024 11:11:09 GMT', 'Etag': 'W/"92-purSUQiV3eBwAwUlKHKsyw4A0TM"', 'Server': 'Vercel', 'Strict-Transport-Security': 'max-age=63072000; includeSubDomains; preload', 'X-Powered-By': 'Express', 'X-Robots-Tag': 'noindex', 'X-Vercel-Cache': 'BYPASS', 'X-Vercel-Id': 'cdg1::iad1::ns6jd-1716462669754-160263722696'} 
+ body={"taskid":2,"title":"Acheter des courses","description":"Acheter du lait, des œufs et du pain.","deadline":"2024-04-10T00:00:00.000Z","userid":2} 
+ </msg>
+<msg time="2024-05-23T12:11:09.413169" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>${url}</arg>
+<arg>headers=${headers}</arg>
+<doc>Sends a GET request.</doc>
+<status status="PASS" start="2024-05-23T12:11:08.416683" elapsed="0.996486"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2024-05-23T12:11:09.420859" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2024-05-23T12:11:09.418175" elapsed="0.002684"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-05-23T12:11:09.425083" level="INFO">{"taskid":2,"title":"Acheter des courses","description":"Acheter du lait, des \xc5\x93ufs et du pain.","deadline":"2024-04-10T00:00:00.000Z","userid":2}</msg>
+<arg>${response.content}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-05-23T12:11:09.423086" elapsed="0.001997"/>
+</kw>
+<doc>Test getting task details by ID</doc>
+<status status="PASS" start="2024-05-23T12:11:08.412977" elapsed="1.013806"/>
+</test>
+<test id="s1-s1-t3" name="Validate Task Schema" line="65">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-05-23T12:11:09.435288" level="INFO">${task_id} = 2</msg>
+<var>${task_id}</var>
+<arg>2</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-05-23T12:11:09.434274" elapsed="0.001014"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-05-23T12:11:09.437474" level="INFO">${headers} = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImltYW5lIiwiaWF0IjoxNzE2NDYyNjY3LCJleHAiOjE3MTY0NjYyNjd9.9eQQVEF0SE7sP4bU3Cd_FMSqu5Fc_KS46rEnkr9AKUY', 'Content-Type': 'a...</msg>
+<var>${headers}</var>
+<arg>Authorization=Bearer ${AuthToken}</arg>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-05-23T12:11:09.437474" elapsed="0.001003"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-05-23T12:11:09.439617" level="INFO">${BaseUrl} = https://testing-auto-git-main-pfe2024s-projects.vercel.app/tasks//get-task/2</msg>
+<var>${BaseUrl}</var>
+<arg>${url}${GetTaskEndpoint}/${task_id}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-05-23T12:11:09.439617" elapsed="0.000000"/>
+</kw>
+<kw name="GET" owner="RequestsLibrary">
+<msg time="2024-05-23T12:11:10.248504" level="INFO">GET Request : url=https://testing-auto-git-main-pfe2024s-projects.vercel.app/tasks//get-task/2 (redirected) 
+ path_url=/tasks//get-task/2 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImltYW5lIiwiaWF0IjoxNzE2NDYyNjY3LCJleHAiOjE3MTY0NjYyNjd9.9eQQVEF0SE7sP4bU3Cd_FMSqu5Fc_KS46rEnkr9AKUY', 'Content-Type': 'application/json'} 
+ body=None 
+ </msg>
+<msg time="2024-05-23T12:11:10.248504" level="INFO">GET Response : url=https://testing-auto-git-main-pfe2024s-projects.vercel.app/tasks/get-task/2 
+ status=200, reason=OK 
+ headers={'Cache-Control': 'public, max-age=0, must-revalidate', 'Connection': 'keep-alive', 'Content-Length': '146', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Thu, 23 May 2024 11:11:10 GMT', 'Etag': 'W/"92-purSUQiV3eBwAwUlKHKsyw4A0TM"', 'Server': 'Vercel', 'Strict-Transport-Security': 'max-age=63072000; includeSubDomains; preload', 'X-Powered-By': 'Express', 'X-Robots-Tag': 'noindex', 'X-Vercel-Cache': 'BYPASS', 'X-Vercel-Id': 'cdg1::iad1::425f5-1716462670694-f494235aac0e'} 
+ body={"taskid":2,"title":"Acheter des courses","description":"Acheter du lait, des œufs et du pain.","deadline":"2024-04-10T00:00:00.000Z","userid":2} 
+ </msg>
+<msg time="2024-05-23T12:11:10.248504" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>${BaseUrl}</arg>
+<arg>headers=${headers}</arg>
+<doc>Sends a GET request.</doc>
+<status status="PASS" start="2024-05-23T12:11:09.440882" elapsed="0.807622"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2024-05-23T12:11:10.261448" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2024-05-23T12:11:10.260755" elapsed="0.000693"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${response.json()}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2024-05-23T12:11:10.262737" elapsed="0.002404"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2024-05-23T12:11:10.266234" elapsed="0.003880"/>
+</kw>
+<doc>Test fetching a task and validate the schema</doc>
+<status status="PASS" start="2024-05-23T12:11:09.432429" elapsed="0.839129"/>
+</test>
+<status status="PASS" start="2024-05-23T12:11:05.911627" elapsed="4.363199"/>
+</suite>
+<suite id="s1-s2" name="ApiTests" source="C:\Users\hp\Downloads\FrameworkTest-master\FrameworkTest-master\Tests\ApiTests">
+<suite id="s1-s2-s1" name="Get" source="C:\Users\hp\Downloads\FrameworkTest-master\FrameworkTest-master\Tests\ApiTests\get.robot">
+<test id="s1-s2-s1-t1" name="Test Product" line="8">
+<kw name="Get All Products" owner="keywords">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-05-23T12:11:10.598035" level="INFO">${headers} = {'Content-Type': 'application/json'}</msg>
+<var>${headers}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-05-23T12:11:10.598035" elapsed="0.000000"/>
+</kw>
+<kw name="GET" owner="RequestsLibrary">
+<msg time="2024-05-23T12:11:12.555704" level="INFO">GET Request : url=https://dummyjson.com/products 
+ path_url=/products 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json'} 
+ body=None 
+ </msg>
+<msg time="2024-05-23T12:11:12.555704" level="INFO">GET Response : url=https://dummyjson.com/products 
+ status=200, reason=OK 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'x-ratelimit-limit': '100', 'x-ratelimit-remaining': '99', 'date': 'Thu, 23 May 2024 11:11:13 GMT', 'x-ratelimit-reset': '1716462679', 'content-type': 'application/json; charset=utf-8', 'etag': 'W/"433e-g2UJQgfnupkv6PIR1Jka6cNpDBM"', 'vary': 'Accept-Encoding', 'content-encoding': 'gzip', 'server': 'railway', 'transfer-encoding': 'chunked'} 
+ body={"products":[{"id":1,"title":"iPhone 9","description":"An apple mobile which is nothing like apple","price":549,"discountPercentage":12.96,"rating":4.69,"stock":94,"brand":"Apple","category":"smartphones","thumbnail":"https://cdn.dummyjson.com/product-images/1/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/1/1.jpg","https://cdn.dummyjson.com/product-images/1/2.jpg","https://cdn.dummyjson.com/product-images/1/3.jpg","https://cdn.dummyjson.com/product-images/1/4.jpg","https://cdn.dummyjson.com/product-images/1/thumbnail.jpg"]},{"id":2,"title":"iPhone X","description":"SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...","price":899,"discountPercentage":17.94,"rating":4.44,"stock":34,"brand":"Apple","category":"smartphones","thumbnail":"https://cdn.dummyjson.com/product-images/2/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/2/1.jpg","https://cdn.dummyjson.com/product-images/2/2.jpg","https://cdn.dummyjson.com/product-images/2/3.jpg","https://cdn.dummyjson.com/product-images/2/thumbnail.jpg"]},{"id":3,"title":"Samsung Universe 9","description":"Samsung's new variant which goes beyond Galaxy to the Universe","price":1249,"discountPercentage":15.46,"rating":4.09,"stock":36,"brand":"Samsung","category":"smartphones","thumbnail":"https://cdn.dummyjson.com/product-images/3/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/3/1.jpg"]},{"id":4,"title":"OPPOF19","description":"OPPO F19 is officially announced on April 2021.","price":280,"discountPercentage":17.91,"rating":4.3,"stock":123,"brand":"OPPO","category":"smartphones","thumbnail":"https://cdn.dummyjson.com/product-images/4/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/4/1.jpg","https://cdn.dummyjson.com/product-images/4/2.jpg","https://cdn.dummyjson.com/product-images/4/3.jpg","https://cdn.dummyjson.com/product-images/4/4.jpg","https://cdn.dummyjson.com/product-images/4/thumbnail.jpg"]},{"id":5,"title":"Huawei P30","description":"Huawei’s re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK.","price":499,"discountPercentage":10.58,"rating":4.09,"stock":32,"brand":"Huawei","category":"smartphones","thumbnail":"https://cdn.dummyjson.com/product-images/5/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/5/1.jpg","https://cdn.dummyjson.com/product-images/5/2.jpg","https://cdn.dummyjson.com/product-images/5/3.jpg"]},{"id":6,"title":"MacBook Pro","description":"MacBook Pro 2021 with mini-LED display may launch between September, November","price":1749,"discountPercentage":11.02,"rating":4.57,"stock":83,"brand":"Apple","category":"laptops","thumbnail":"https://cdn.dummyjson.com/product-images/6/thumbnail.png","images":["https://cdn.dummyjson.com/product-images/6/1.png","https://cdn.dummyjson.com/product-images/6/2.jpg","https://cdn.dummyjson.com/product-images/6/3.png","https://cdn.dummyjson.com/product-images/6/4.jpg"]},{"id":7,"title":"Samsung Galaxy Book","description":"Samsung Galaxy Book S (2020) Laptop With Intel Lakefield Chip, 8GB of RAM Launched","price":1499,"discountPercentage":4.15,"rating":4.25,"stock":50,"brand":"Samsung","category":"laptops","thumbnail":"https://cdn.dummyjson.com/product-images/7/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/7/1.jpg","https://cdn.dummyjson.com/product-images/7/2.jpg","https://cdn.dummyjson.com/product-images/7/3.jpg","https://cdn.dummyjson.com/product-images/7/thumbnail.jpg"]},{"id":8,"title":"Microsoft Surface Laptop 4","description":"Style and speed. Stand out on HD video calls backed by Studio Mics. Capture ideas on the vibrant touchscreen.","price":1499,"discountPercentage":10.23,"rating":4.43,"stock":68,"brand":"Microsoft Surface","category":"laptops","thumbnail":"https://cdn.dummyjson.com/product-images/8/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/8/1.jpg","https://cdn.dummyjson.com/product-images/8/2.jpg","https://cdn.dummyjson.com/product-images/8/3.jpg","https://cdn.dummyjson.com/product-images/8/4.jpg","https://cdn.dummyjson.com/product-images/8/thumbnail.jpg"]},{"id":9,"title":"Infinix INBOOK","description":"Infinix Inbook X1 Ci3 10th 8GB 256GB 14 Win10 Grey – 1 Year Warranty","price":1099,"discountPercentage":11.83,"rating":4.54,"stock":96,"brand":"Infinix","category":"laptops","thumbnail":"https://cdn.dummyjson.com/product-images/9/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/9/1.jpg","https://cdn.dummyjson.com/product-images/9/2.png","https://cdn.dummyjson.com/product-images/9/3.png","https://cdn.dummyjson.com/product-images/9/4.jpg","https://cdn.dummyjson.com/product-images/9/thumbnail.jpg"]},{"id":10,"title":"HP Pavilion 15-DK1056WM","description":"HP Pavilion 15-DK1056WM Gaming Laptop 10th Gen Core i5, 8GB, 256GB SSD, GTX 1650 4GB, Windows 10","price":1099,"discountPercentage":6.18,"rating":4.43,"stock":89,"brand":"HP Pavilion","category":"laptops","thumbnail":"https://cdn.dummyjson.com/product-images/10/thumbnail.jpeg","images":["https://cdn.dummyjson.com/product-images/10/1.jpg","https://cdn.dummyjson.com/product-images/10/2.jpg","https://cdn.dummyjson.com/product-images/10/3.jpg","https://cdn.dummyjson.com/product-images/10/thumbnail.jpeg"]},{"id":11,"title":"perfume Oil","description":"Mega Discount, Impression of Acqua Di Gio by GiorgioArmani concentrated attar perfume Oil","price":13,"discountPercentage":8.4,"rating":4.26,"stock":65,"brand":"Impression of Acqua Di Gio","category":"fragrances","thumbnail":"https://cdn.dummyjson.com/product-images/11/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/11/1.jpg","https://cdn.dummyjson.com/product-images/11/2.jpg","https://cdn.dummyjson.com/product-images/11/3.jpg","https://cdn.dummyjson.com/product-images/11/thumbnail.jpg"]},{"id":12,"title":"Brown Perfume","description":"Royal_Mirage Sport Brown Perfume for Men &amp; Women - 120ml","price":40,"discountPercentage":15.66,"rating":4,"stock":52,"brand":"Royal_Mirage","category":"fragrances","thumbnail":"https://cdn.dummyjson.com/product-images/12/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/12/1.jpg","https://cdn.dummyjson.com/product-images/12/2.jpg","https://cdn.dummyjson.com/product-images/12/3.png","https://cdn.dummyjson.com/product-images/12/4.jpg","https://cdn.dummyjson.com/product-images/12/thumbnail.jpg"]},{"id":13,"title":"Fog Scent Xpressio Perfume","description":"Product details of Best Fog Scent Xpressio Perfume 100ml For Men cool long lasting perfumes for Men","price":13,"discountPercentage":8.14,"rating":4.59,"stock":61,"brand":"Fog Scent Xpressio","category":"fragrances","thumbnail":"https://cdn.dummyjson.com/product-images/13/thumbnail.webp","images":["https://cdn.dummyjson.com/product-images/13/1.jpg","https://cdn.dummyjson.com/product-images/13/2.png","https://cdn.dummyjson.com/product-images/13/3.jpg","https://cdn.dummyjson.com/product-images/13/4.jpg","https://cdn.dummyjson.com/product-images/13/thumbnail.webp"]},{"id":14,"title":"Non-Alcoholic Concentrated Perfume Oil","description":"Original Al Munakh® by Mahal Al Musk | Our Impression of Climate | 6ml Non-Alcoholic Concentrated Perfume Oil","price":120,"discountPercentage":15.6,"rating":4.21,"stock":114,"brand":"Al Munakh","category":"fragrances","thumbnail":"https://cdn.dummyjson.com/product-images/14/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/14/1.jpg","https://cdn.dummyjson.com/product-images/14/2.jpg","https://cdn.dummyjson.com/product-images/14/3.jpg","https://cdn.dummyjson.com/product-images/14/thumbnail.jpg"]},{"id":15,"title":"Eau De Perfume Spray","description":"Genuine  Al-Rehab spray perfume from UAE/Saudi Arabia/Yemen High Quality","price":30,"discountPercentage":10.99,"rating":4.7,"stock":105,"brand":"Lord - Al-Rehab","category":"fragrances","thumbnail":"https://cdn.dummyjson.com/product-images/15/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/15/1.jpg","https://cdn.dummyjson.com/product-images/15/2.jpg","https://cdn.dummyjson.com/product-images/15/3.jpg","https://cdn.dummyjson.com/product-images/15/4.jpg","https://cdn.dummyjson.com/product-images/15/thumbnail.jpg"]},{"id":16,"title":"Hyaluronic Acid Serum","description":"L'OrÃ©al Paris introduces Hyaluron Expert Replumping Serum formulated with 1.5% Hyaluronic Acid","price":19,"discountPercentage":13.31,"rating":4.83,"stock":110,"brand":"L'Oreal Paris","category":"skincare","thumbnail":"https://cdn.dummyjson.com/product-images/16/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/16/1.png","https://cdn.dummyjson.com/product-images/16/2.webp","https://cdn.dummyjson.com/product-images/16/3.jpg","https://cdn.dummyjson.com/product-images/16/4.jpg","https://cdn.dummyjson.com/product-images/16/thumbnail.jpg"]},{"id":17,"title":"Tree Oil 30ml","description":"Tea tree oil contains a number of compounds, including terpinen-4-ol, that have been shown to kill certain bacteria,","price":12,"discountPercentage":4.09,"rating":4.52,"stock":78,"brand":"Hemani Tea","category":"skincare","thumbnail":"https://cdn.dummyjson.com/product-images/17/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/17/1.jpg","https://cdn.dummyjson.com/product-images/17/2.jpg","https://cdn.dummyjson.com/product-images/17/3.jpg","https://cdn.dummyjson.com/product-images/17/thumbnail.jpg"]},{"id":18,"title":"Oil Free Moisturizer 100ml","description":"Dermive Oil Free Moisturizer with SPF 20 is specifically formulated with ceramides, hyaluronic acid &amp; sunscreen.","price":40,"discountPercentage":13.1,"rating":4.56,"stock":88,"brand":"Dermive","category":"skincare","thumbnail":"https://cdn.dummyjson.com/product-images/18/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/18/1.jpg","https://cdn.dummyjson.com/product-images/18/2.jpg","https://cdn.dummyjson.com/product-images/18/3.jpg","https://cdn.dummyjson.com/produc... (set the log level to DEBUG or TRACE to see the full content) 
+ </msg>
+<msg time="2024-05-23T12:11:12.558583" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>url=${Host}${GET_ALL_PRODUCTS}</arg>
+<arg>headers=${headers}</arg>
+<doc>Sends a GET request.</doc>
+<status status="PASS" start="2024-05-23T12:11:10.598035" elapsed="1.960548"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-05-23T12:11:12.561622" level="INFO">200</msg>
+<arg>${response.status_code}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-05-23T12:11:12.559618" elapsed="0.002004"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-05-23T12:11:12.568261" level="INFO">{"products":[{"id":1,"title":"iPhone 9","description":"An apple mobile which is nothing like apple","price":549,"discountPercentage":12.96,"rating":4.69,"stock":94,"brand":"Apple","category":"smartphones","thumbnail":"https://cdn.dummyjson.com/product-images/1/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/1/1.jpg","https://cdn.dummyjson.com/product-images/1/2.jpg","https://cdn.dummyjson.com/product-images/1/3.jpg","https://cdn.dummyjson.com/product-images/1/4.jpg","https://cdn.dummyjson.com/product-images/1/thumbnail.jpg"]},{"id":2,"title":"iPhone X","description":"SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...","price":899,"discountPercentage":17.94,"rating":4.44,"stock":34,"brand":"Apple","category":"smartphones","thumbnail":"https://cdn.dummyjson.com/product-images/2/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/2/1.jpg","https://cdn.dummyjson.com/product-images/2/2.jpg","https://cdn.dummyjson.com/product-images/2/3.jpg","https://cdn.dummyjson.com/product-images/2/thumbnail.jpg"]},{"id":3,"title":"Samsung Universe 9","description":"Samsung's new variant which goes beyond Galaxy to the Universe","price":1249,"discountPercentage":15.46,"rating":4.09,"stock":36,"brand":"Samsung","category":"smartphones","thumbnail":"https://cdn.dummyjson.com/product-images/3/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/3/1.jpg"]},{"id":4,"title":"OPPOF19","description":"OPPO F19 is officially announced on April 2021.","price":280,"discountPercentage":17.91,"rating":4.3,"stock":123,"brand":"OPPO","category":"smartphones","thumbnail":"https://cdn.dummyjson.com/product-images/4/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/4/1.jpg","https://cdn.dummyjson.com/product-images/4/2.jpg","https://cdn.dummyjson.com/product-images/4/3.jpg","https://cdn.dummyjson.com/product-images/4/4.jpg","https://cdn.dummyjson.com/product-images/4/thumbnail.jpg"]},{"id":5,"title":"Huawei P30","description":"Huawei\xe2\x80\x99s re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK.","price":499,"discountPercentage":10.58,"rating":4.09,"stock":32,"brand":"Huawei","category":"smartphones","thumbnail":"https://cdn.dummyjson.com/product-images/5/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/5/1.jpg","https://cdn.dummyjson.com/product-images/5/2.jpg","https://cdn.dummyjson.com/product-images/5/3.jpg"]},{"id":6,"title":"MacBook Pro","description":"MacBook Pro 2021 with mini-LED display may launch between September, November","price":1749,"discountPercentage":11.02,"rating":4.57,"stock":83,"brand":"Apple","category":"laptops","thumbnail":"https://cdn.dummyjson.com/product-images/6/thumbnail.png","images":["https://cdn.dummyjson.com/product-images/6/1.png","https://cdn.dummyjson.com/product-images/6/2.jpg","https://cdn.dummyjson.com/product-images/6/3.png","https://cdn.dummyjson.com/product-images/6/4.jpg"]},{"id":7,"title":"Samsung Galaxy Book","description":"Samsung Galaxy Book S (2020) Laptop With Intel Lakefield Chip, 8GB of RAM Launched","price":1499,"discountPercentage":4.15,"rating":4.25,"stock":50,"brand":"Samsung","category":"laptops","thumbnail":"https://cdn.dummyjson.com/product-images/7/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/7/1.jpg","https://cdn.dummyjson.com/product-images/7/2.jpg","https://cdn.dummyjson.com/product-images/7/3.jpg","https://cdn.dummyjson.com/product-images/7/thumbnail.jpg"]},{"id":8,"title":"Microsoft Surface Laptop 4","description":"Style and speed. Stand out on HD video calls backed by Studio Mics. Capture ideas on the vibrant touchscreen.","price":1499,"discountPercentage":10.23,"rating":4.43,"stock":68,"brand":"Microsoft Surface","category":"laptops","thumbnail":"https://cdn.dummyjson.com/product-images/8/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/8/1.jpg","https://cdn.dummyjson.com/product-images/8/2.jpg","https://cdn.dummyjson.com/product-images/8/3.jpg","https://cdn.dummyjson.com/product-images/8/4.jpg","https://cdn.dummyjson.com/product-images/8/thumbnail.jpg"]},{"id":9,"title":"Infinix INBOOK","description":"Infinix Inbook X1 Ci3 10th 8GB 256GB 14 Win10 Grey \xe2\x80\x93 1 Year Warranty","price":1099,"discountPercentage":11.83,"rating":4.54,"stock":96,"brand":"Infinix","category":"laptops","thumbnail":"https://cdn.dummyjson.com/product-images/9/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/9/1.jpg","https://cdn.dummyjson.com/product-images/9/2.png","https://cdn.dummyjson.com/product-images/9/3.png","https://cdn.dummyjson.com/product-images/9/4.jpg","https://cdn.dummyjson.com/product-images/9/thumbnail.jpg"]},{"id":10,"title":"HP Pavilion 15-DK1056WM","description":"HP Pavilion 15-DK1056WM Gaming Laptop 10th Gen Core i5, 8GB, 256GB SSD, GTX 1650 4GB, Windows 10","price":1099,"discountPercentage":6.18,"rating":4.43,"stock":89,"brand":"HP Pavilion","category":"laptops","thumbnail":"https://cdn.dummyjson.com/product-images/10/thumbnail.jpeg","images":["https://cdn.dummyjson.com/product-images/10/1.jpg","https://cdn.dummyjson.com/product-images/10/2.jpg","https://cdn.dummyjson.com/product-images/10/3.jpg","https://cdn.dummyjson.com/product-images/10/thumbnail.jpeg"]},{"id":11,"title":"perfume Oil","description":"Mega Discount, Impression of Acqua Di Gio by GiorgioArmani concentrated attar perfume Oil","price":13,"discountPercentage":8.4,"rating":4.26,"stock":65,"brand":"Impression of Acqua Di Gio","category":"fragrances","thumbnail":"https://cdn.dummyjson.com/product-images/11/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/11/1.jpg","https://cdn.dummyjson.com/product-images/11/2.jpg","https://cdn.dummyjson.com/product-images/11/3.jpg","https://cdn.dummyjson.com/product-images/11/thumbnail.jpg"]},{"id":12,"title":"Brown Perfume","description":"Royal_Mirage Sport Brown Perfume for Men &amp; Women - 120ml","price":40,"discountPercentage":15.66,"rating":4,"stock":52,"brand":"Royal_Mirage","category":"fragrances","thumbnail":"https://cdn.dummyjson.com/product-images/12/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/12/1.jpg","https://cdn.dummyjson.com/product-images/12/2.jpg","https://cdn.dummyjson.com/product-images/12/3.png","https://cdn.dummyjson.com/product-images/12/4.jpg","https://cdn.dummyjson.com/product-images/12/thumbnail.jpg"]},{"id":13,"title":"Fog Scent Xpressio Perfume","description":"Product details of Best Fog Scent Xpressio Perfume 100ml For Men cool long lasting perfumes for Men","price":13,"discountPercentage":8.14,"rating":4.59,"stock":61,"brand":"Fog Scent Xpressio","category":"fragrances","thumbnail":"https://cdn.dummyjson.com/product-images/13/thumbnail.webp","images":["https://cdn.dummyjson.com/product-images/13/1.jpg","https://cdn.dummyjson.com/product-images/13/2.png","https://cdn.dummyjson.com/product-images/13/3.jpg","https://cdn.dummyjson.com/product-images/13/4.jpg","https://cdn.dummyjson.com/product-images/13/thumbnail.webp"]},{"id":14,"title":"Non-Alcoholic Concentrated Perfume Oil","description":"Original Al Munakh\xc2\xae by Mahal Al Musk | Our Impression of Climate | 6ml Non-Alcoholic Concentrated Perfume Oil","price":120,"discountPercentage":15.6,"rating":4.21,"stock":114,"brand":"Al Munakh","category":"fragrances","thumbnail":"https://cdn.dummyjson.com/product-images/14/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/14/1.jpg","https://cdn.dummyjson.com/product-images/14/2.jpg","https://cdn.dummyjson.com/product-images/14/3.jpg","https://cdn.dummyjson.com/product-images/14/thumbnail.jpg"]},{"id":15,"title":"Eau De Perfume Spray","description":"Genuine  Al-Rehab spray perfume from UAE/Saudi Arabia/Yemen High Quality","price":30,"discountPercentage":10.99,"rating":4.7,"stock":105,"brand":"Lord - Al-Rehab","category":"fragrances","thumbnail":"https://cdn.dummyjson.com/product-images/15/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/15/1.jpg","https://cdn.dummyjson.com/product-images/15/2.jpg","https://cdn.dummyjson.com/product-images/15/3.jpg","https://cdn.dummyjson.com/product-images/15/4.jpg","https://cdn.dummyjson.com/product-images/15/thumbnail.jpg"]},{"id":16,"title":"Hyaluronic Acid Serum","description":"L'Or\xc3\x83\xc2\xa9al Paris introduces Hyaluron Expert Replumping Serum formulated with 1.5% Hyaluronic Acid","price":19,"discountPercentage":13.31,"rating":4.83,"stock":110,"brand":"L'Oreal Paris","category":"skincare","thumbnail":"https://cdn.dummyjson.com/product-images/16/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/16/1.png","https://cdn.dummyjson.com/product-images/16/2.webp","https://cdn.dummyjson.com/product-images/16/3.jpg","https://cdn.dummyjson.com/product-images/16/4.jpg","https://cdn.dummyjson.com/product-images/16/thumbnail.jpg"]},{"id":17,"title":"Tree Oil 30ml","description":"Tea tree oil contains a number of compounds, including terpinen-4-ol, that have been shown to kill certain bacteria,","price":12,"discountPercentage":4.09,"rating":4.52,"stock":78,"brand":"Hemani Tea","category":"skincare","thumbnail":"https://cdn.dummyjson.com/product-images/17/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/17/1.jpg","https://cdn.dummyjson.com/product-images/17/2.jpg","https://cdn.dummyjson.com/product-images/17/3.jpg","https://cdn.dummyjson.com/product-images/17/thumbnail.jpg"]},{"id":18,"title":"Oil Free Moisturizer 100ml","description":"Dermive Oil Free Moisturizer with SPF 20 is specifically formulated with ceramides, hyaluronic acid &amp; sunscreen.","price":40,"discountPercentage":13.1,"rating":4.56,"stock":88,"brand":"Dermive","category":"skincare","thumbnail":"https://cdn.dummyjson.com/product-images/18/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/18/1.jpg","https://cdn.dummyjson.com/product-images/18/2.jpg","https://cdn.dummyjson.com/product-images/18/3.jpg","https://cdn.dummyjson.com/product-images/18/4.jpg","https://cdn.dummyjson.com/product-images/18/thumbnail.jpg"]},{"id":19,"title":"Skin Beauty Serum.","description":"Product name: rorec collagen hyaluronic acid white face serum riceNet weight: 15 m","price":46,"discountPercentage":10.68,"rating":4.42,"stock":54,"brand":"ROREC White Rice","category":"skincare","thumbnail":"https://cdn.dummyjson.com/product-images/19/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/19/1.jpg","https://cdn.dummyjson.com/product-images/19/2.jpg","https://cdn.dummyjson.com/product-images/19/3.png","https://cdn.dummyjson.com/product-images/19/thumbnail.jpg"]},{"id":20,"title":"Freckle Treatment Cream- 15gm","description":"Fair &amp; Clear is Pakistan's only pure Freckle cream which helpsfade Freckles, Darkspots and pigments. Mercury level is 0%, so there are no side effects.","price":70,"discountPercentage":16.99,"rating":4.06,"stock":140,"brand":"Fair &amp; Clear","category":"skincare","thumbnail":"https://cdn.dummyjson.com/product-images/20/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/20/1.jpg","https://cdn.dummyjson.com/product-images/20/2.jpg","https://cdn.dummyjson.com/product-images/20/3.jpg","https://cdn.dummyjson.com/product-images/20/4.jpg","https://cdn.dummyjson.com/product-images/20/thumbnail.jpg"]},{"id":21,"title":"- Daal Masoor 500 grams","description":"Fine quality Branded Product Keep in a cool and dry place","price":20,"discountPercentage":4.81,"rating":4.44,"stock":133,"brand":"Saaf &amp; Khaas","category":"groceries","thumbnail":"https://cdn.dummyjson.com/product-images/21/thumbnail.png","images":["https://cdn.dummyjson.com/product-images/21/1.png","https://cdn.dummyjson.com/product-images/21/2.jpg","https://cdn.dummyjson.com/product-images/21/3.jpg"]},{"id":22,"title":"Elbow Macaroni - 400 gm","description":"Product details of Bake Parlor Big Elbow Macaroni - 400 gm","price":14,"discountPercentage":15.58,"rating":4.57,"stock":146,"brand":"Bake Parlor Big","category":"groceries","thumbnail":"https://cdn.dummyjson.com/product-images/22/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/22/1.jpg","https://cdn.dummyjson.com/product-images/22/2.jpg","https://cdn.dummyjson.com/product-images/22/3.jpg"]},{"id":23,"title":"Orange Essence Food Flavou","description":"Specifications of Orange Essence Food Flavour For Cakes and Baking Food Item","price":14,"discountPercentage":8.04,"rating":4.85,"stock":26,"brand":"Baking Food Items","category":"groceries","thumbnail":"https://cdn.dummyjson.com/product-images/23/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/23/1.jpg","https://cdn.dummyjson.com/product-images/23/2.jpg","https://cdn.dummyjson.com/product-images/23/3.jpg","https://cdn.dummyjson.com/product-images/23/4.jpg","https://cdn.dummyjson.com/product-images/23/thumbnail.jpg"]},{"id":24,"title":"cereals muesli fruit nuts","description":"original fauji cereal muesli 250gm box pack original fauji cereals muesli fruit nuts flakes breakfast cereal break fast faujicereals cerels cerel foji fouji","price":46,"discountPercentage":16.8,"rating":4.94,"stock":113,"brand":"fauji","category":"groceries","thumbnail":"https://cdn.dummyjson.com/product-images/24/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/24/1.jpg","https://cdn.dummyjson.com/product-images/24/2.jpg","https://cdn.dummyjson.com/product-images/24/3.jpg","https://cdn.dummyjson.com/product-images/24/4.jpg","https://cdn.dummyjson.com/product-images/24/thumbnail.jpg"]},{"id":25,"title":"Gulab Powder 50 Gram","description":"Dry Rose Flower Powder Gulab Powder 50 Gram \xe2\x80\xa2 Treats Wounds","price":70,"discountPercentage":13.58,"rating":4.87,"stock":47,"brand":"Dry Rose","category":"groceries","thumbnail":"https://cdn.dummyjson.com/product-images/25/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/25/1.png","https://cdn.dummyjson.com/product-images/25/2.jpg","https://cdn.dummyjson.com/product-images/25/3.png","https://cdn.dummyjson.com/product-images/25/4.jpg","https://cdn.dummyjson.com/product-images/25/thumbnail.jpg"]},{"id":26,"title":"Plant Hanger For Home","description":"Boho Decor Plant Hanger For Home Wall Decoration Macrame Wall Hanging Shelf","price":41,"discountPercentage":17.86,"rating":4.08,"stock":131,"brand":"Boho Decor","category":"home-decoration","thumbnail":"https://cdn.dummyjson.com/product-images/26/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/26/1.jpg","https://cdn.dummyjson.com/product-images/26/2.jpg","https://cdn.dummyjson.com/product-images/26/3.jpg","https://cdn.dummyjson.com/product-images/26/4.jpg","https://cdn.dummyjson.com/product-images/26/5.jpg","https://cdn.dummyjson.com/product-images/26/thumbnail.jpg"]},{"id":27,"title":"Flying Wooden Bird","description":"Package Include 6 Birds with Adhesive Tape Shape: 3D Shaped Wooden Birds Material: Wooden MDF, Laminated 3.5mm","price":51,"discountPercentage":15.58,"rating":4.41,"stock":17,"brand":"Flying Wooden","category":"home-decoration","thumbnail":"https://cdn.dummyjson.com/product-images/27/thumbnail.webp","images":["https://cdn.dummyjson.com/product-images/27/1.jpg","https://cdn.dummyjson.com/product-images/27/2.jpg","https://cdn.dummyjson.com/product-images/27/3.jpg","https://cdn.dummyjson.com/product-images/27/4.jpg","https://cdn.dummyjson.com/product-images/27/thumbnail.webp"]},{"id":28,"title":"3D Embellishment Art Lamp","description":"3D led lamp sticker Wall sticker 3d wall art light on/off button  cell operated (included)","price":20,"discountPercentage":16.49,"rating":4.82,"stock":54,"brand":"LED Lights","category":"home-decoration","thumbnail":"https://cdn.dummyjson.com/product-images/28/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/28/1.jpg","https://cdn.dummyjson.com/product-images/28/2.jpg","https://cdn.dummyjson.com/product-images/28/3.png","https://cdn.dummyjson.com/product-images/28/4.jpg","https://cdn.dummyjson.com/product-images/28/thumbnail.jpg"]},{"id":29,"title":"Handcraft Chinese style","description":"Handcraft Chinese style art luxury palace hotel villa mansion home decor ceramic vase with brass fruit plate","price":60,"discountPercentage":15.34,"rating":4.44,"stock":7,"brand":"luxury palace","category":"home-decoration","thumbnail":"https://cdn.dummyjson.com/product-images/29/thumbnail.webp","images":["https://cdn.dummyjson.com/product-images/29/1.jpg","https://cdn.dummyjson.com/product-images/29/2.jpg","https://cdn.dummyjson.com/product-images/29/3.webp","https://cdn.dummyjson.com/product-images/29/4.webp","https://cdn.dummyjson.com/product-images/29/thumbnail.webp"]},{"id":30,"title":"Key Holder","description":"Attractive DesignMetallic materialFour key hooksReliable &amp; DurablePremium Quality","price":30,"discountPercentage":2.92,"rating":4.92,"stock":54,"brand":"Golden","category":"home-decoration","thumbnail":"https://cdn.dummyjson.com/product-images/30/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/30/1.jpg","https://cdn.dummyjson.com/product-images/30/2.jpg","https://cdn.dummyjson.com/product-images/30/3.jpg","https://cdn.dummyjson.com/product-images/30/thumbnail.jpg"]}],"total":100,"skip":0,"limit":30}</msg>
+<arg>${response.content}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-05-23T12:11:12.561622" elapsed="0.006639"/>
+</kw>
+<status status="PASS" start="2024-05-23T12:11:10.597035" elapsed="1.971226"/>
+</kw>
+<status status="PASS" start="2024-05-23T12:11:10.597035" elapsed="1.972947"/>
+</test>
+<test id="s1-s2-s1-t2" name="Test Product By id" line="11">
+<kw name="Get One Product By ID" owner="keywords">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-05-23T12:11:12.575597" level="INFO">${headers} = {'Content-Type': 'application/json'}</msg>
+<var>${headers}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-05-23T12:11:12.574597" elapsed="0.001000"/>
+</kw>
+<kw name="GET" owner="RequestsLibrary">
+<msg time="2024-05-23T12:11:13.549933" level="INFO">GET Request : url=https://dummyjson.com/products/15 
+ path_url=/products/15 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json'} 
+ body=None 
+ </msg>
+<msg time="2024-05-23T12:11:13.549933" level="INFO">GET Response : url=https://dummyjson.com/products/15 
+ status=200, reason=OK 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'x-ratelimit-limit': '100', 'x-ratelimit-remaining': '98', 'date': 'Thu, 23 May 2024 11:11:14 GMT', 'x-ratelimit-reset': '1716462679', 'content-type': 'application/json; charset=utf-8', 'content-length': '593', 'etag': 'W/"251-3Izh2zJUyzf3d7l/cFQ18X2f+D0"', 'vary': 'Accept-Encoding', 'server': 'railway'} 
+ body={"id":15,"title":"Eau De Perfume Spray","description":"Genuine  Al-Rehab spray perfume from UAE/Saudi Arabia/Yemen High Quality","price":30,"discountPercentage":10.99,"rating":4.7,"stock":105,"brand":"Lord - Al-Rehab","category":"fragrances","thumbnail":"https://cdn.dummyjson.com/product-images/15/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/15/1.jpg","https://cdn.dummyjson.com/product-images/15/2.jpg","https://cdn.dummyjson.com/product-images/15/3.jpg","https://cdn.dummyjson.com/product-images/15/4.jpg","https://cdn.dummyjson.com/product-images/15/thumbnail.jpg"]} 
+ </msg>
+<msg time="2024-05-23T12:11:13.550980" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>url=${Host}${GET_SINGLE_PRODUCT}</arg>
+<arg>headers=${headers}</arg>
+<doc>Sends a GET request.</doc>
+<status status="PASS" start="2024-05-23T12:11:12.575597" elapsed="0.975383"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-05-23T12:11:13.552989" level="INFO">200</msg>
+<arg>${response.status_code}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-05-23T12:11:13.550980" elapsed="0.002009"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-05-23T12:11:13.552989" level="INFO">{"id":15,"title":"Eau De Perfume Spray","description":"Genuine  Al-Rehab spray perfume from UAE/Saudi Arabia/Yemen High Quality","price":30,"discountPercentage":10.99,"rating":4.7,"stock":105,"brand":"Lord - Al-Rehab","category":"fragrances","thumbnail":"https://cdn.dummyjson.com/product-images/15/thumbnail.jpg","images":["https://cdn.dummyjson.com/product-images/15/1.jpg","https://cdn.dummyjson.com/product-images/15/2.jpg","https://cdn.dummyjson.com/product-images/15/3.jpg","https://cdn.dummyjson.com/product-images/15/4.jpg","https://cdn.dummyjson.com/product-images/15/thumbnail.jpg"]}</msg>
+<arg>${response.content}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-05-23T12:11:13.552989" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-05-23T12:11:12.574597" elapsed="0.978392"/>
+</kw>
+<status status="PASS" start="2024-05-23T12:11:12.573597" elapsed="0.986075"/>
+</test>
+<status status="PASS" start="2024-05-23T12:11:10.288438" elapsed="3.276011"/>
+</suite>
+<status status="PASS" start="2024-05-23T12:11:10.280801" elapsed="3.293507"/>
+</suite>
+<suite id="s1-s3" name="Test" source="C:\Users\hp\Downloads\FrameworkTest-master\FrameworkTest-master\Tests\Test.robot">
+<test id="s1-s3-t1" name="Test Google in Headless Mode" line="4">
+<kw name="New Browser" owner="Browser">
+<msg time="2024-05-23T12:11:15.729313" level="INFO">{"browser": "chromium", "headless": true, "chromiumSandbox": false, "devtools": false, "handleSIGHUP": true, "handleSIGINT": true, "handleSIGTERM": true, "slowMo": 0.0, "timeout": 30000.0, "tracesDir": "C:\\Users\\hp\\Downloads\\FrameworkTest-master\\FrameworkTest-master\\browser\\traces\\e2cd3a69-7622-4788-a711-d816f3aecfe7"}</msg>
+<msg time="2024-05-23T12:11:16.346388" level="INFO">Successfully created browser with options: {"browser":"chromium","headless":true,"chromiumSandbox":false,"devtools":false,"handleSIGHUP":true,"handleSIGINT":true,"handleSIGTERM":true,"slowMo":0,"timeout":30000,"tracesDir":"C:\\Users\\hp\\Downloads\\FrameworkTest-master\\FrameworkTest-master\\browser\\traces\\e2cd3a69-7622-4788-a711-d816f3aecfe7"}</msg>
+<arg>headless=${True}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Create a new playwright Browser with specified options.</doc>
+<status status="PASS" start="2024-05-23T12:11:15.727592" elapsed="0.619796"/>
+</kw>
+<kw name="New Page" owner="Browser">
+<msg time="2024-05-23T12:11:23.020789" level="INFO">Successfully initialized new page object and opened url: https://www.google.com/</msg>
+<msg time="2024-05-23T12:11:23.020789" level="INFO">No context was open. New context was automatically opened when this page is created.</msg>
+<arg>https://www.google.com/</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Open a new Page.</doc>
+<status status="PASS" start="2024-05-23T12:11:16.350903" elapsed="6.669886"/>
+</kw>
+<kw name="Type Text" owner="Browser">
+<msg time="2024-05-23T12:11:23.023290" level="INFO">Types the text 'Akkodis' in the given field.</msg>
+<arg>id=APjFqb</arg>
+<arg>Akkodis</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Types the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2024-05-23T12:11:23.022627" elapsed="0.147425"/>
+</kw>
+<kw name="Close Browser" owner="Browser">
+<msg time="2024-05-23T12:11:23.249435" level="INFO">Closed browser</msg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2024-05-23T12:11:23.171055" elapsed="0.079418"/>
+</kw>
+<doc>"Gets, types, and asserts"</doc>
+<tag>FT-2</tag>
+<tag>Google</tag>
+<tag>Search</tag>
+<status status="PASS" start="2024-05-23T12:11:15.722613" elapsed="7.528835"/>
+</test>
+<status status="PASS" start="2024-05-23T12:11:13.579794" elapsed="9.723882"/>
+</suite>
+<status status="PASS" start="2024-05-23T12:11:05.878767" elapsed="17.474377"/>
+</suite>
+<statistics>
+<total>
+<stat pass="6" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">FT-2</stat>
+<stat pass="1" fail="0" skip="0">Google</stat>
+<stat pass="1" fail="0" skip="0">Search</stat>
+</tag>
+<suite>
+<stat pass="6" fail="0" skip="0" id="s1" name="Tests">Tests</stat>
+<stat pass="3" fail="0" skip="0" id="s1-s1" name="Api Tests">Tests.Api Tests</stat>
+<stat pass="2" fail="0" skip="0" id="s1-s2" name="ApiTests">Tests.ApiTests</stat>
+<stat pass="2" fail="0" skip="0" id="s1-s2-s1" name="Get">Tests.ApiTests.Get</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s3" name="Test">Tests.Test</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2024-05-23T12:11:10.279389" level="WARN">Multiple suites with name 'ApiTests' executed in suite 'Tests'.</msg>
+</errors>
+</robot>

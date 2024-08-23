@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Report</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .failed {
+            background-color: #FFCCCC; /* Rouge pour les échecs */
+        }
+        .passed {
+            background-color: #CCFFCC; /* Vert pour les réussites */
+        }
+        .skipped {
+            background-color: #FFFF99; /* Jaune pour les tests ignorés */
+        }
+        .elapsed {
+            background-color: #FFD700; /* Orange pour le temps écoulé */
+        }
+       
+        .logo-left,
+        .logo-right {
+            flex: 1; /* Faire en sorte que chaque élément prenne la moitié de l'espace disponible */
+        }
+ 
+        .logo-right {
+            text-align: right; /* Aligner le contenu du logo à droite */
+        }
+        .grand-titre {
+            font-size: 3em; /* Modifier la taille de la police selon vos besoins */
+            /* Ajoutez d'autres styles si nécessaire */
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Alignement vertical */
+        }
+ 
+        .header-info, .header-summary {
+            background-color: #f2f2f2;
+            padding: 10px;
+            border-radius: 8px;
+        }
+ 
+ 
+        .header-divider {
+            width: 20px; /* Définir la largeur de l'espace entre les sections */
+        }
+ 
+ 
+        .logo-container {
+            display: flex;
+            align-items: center; /* Aligner les éléments verticalement */
+        }
+ 
+        .logo {
+            width: 100px; /* Ajuster la largeur du logo selon vos besoins */
+            height: auto; /* Conserver les proportions */
+        }
+        .button-container {
+        margin-bottom: 20px;
+        }
+ 
+        .filterButton {
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-right: 10px;
+        cursor: pointer;
+        transition-duration: 0.4s;
+        border-radius: 4px;
+        }
+ 
+        /* Style pour les tests réussis (passed) */
+        .filterButton.passed {
+        background-color: #4CAF50; /* Vert */
+        }
+ 
+        /* Style pour les tests échoués (fail) */
+        .filterButton.failed {
+        background-color: #f44336; /* Rouge */
+        }
+ 
+        /* Style pour les tests ignorés (skipped) */
+        .filterButton.skipped {
+        background-color: #ff9800; /* Orange */
+        }
+ 
+        /* Changement de couleur au survol */
+        .filterButton:hover {
+        opacity: 0.8; /* Réduire légèrement l'opacité au survol */
+        }
+       
+        .header {
+            display: flex;
+            align-items: center; /* Alignement vertical */
+        }
+ 
+        .header-info, .header-summary {
+            background-color: #f2f2f2;
+            padding: 10px;
+            border-radius: 8px;
+        }
+ 
+        .header-summary {
+            flex-grow: 1; /* Poussez cette section vers la droite autant que possible */
+        }
+ 
+        .header-divider {
+            width: 20px; /* Définir la largeur de l'espace entre les sections */
+        }
+ 
+ 
+        .logo-container {
+            display: flex;
+            align-items: center; /* Aligner les éléments verticalement */
+        }
+ 
+        .logo {
+            width: 100px; /* Ajuster la largeur du logo selon vos besoins */
+            height: auto; /* Conserver les proportions */
+        }
+        .logo-left,
+        .logo-right {
+            flex: 1; /* Faire en sorte que chaque élément prenne la moitié de l'espace disponible */
+        }
+ 
+        .logo-right {
+            text-align: right; /* Aligner le contenu du logo à droite */
+        }
+        .grand-titre {
+            font-size: 3em; /* Modifier la taille de la police selon vos besoins */
+            
+        }
+ 
+ 
+    </style>
+</head>
+<body>
+
+      <div class="header">
+          <div class="header-info">
+              <h1>Formation Generale:</h1>
+              <p><strong>Project Key:</strong> FT</p>
+              <p><strong>Environment:</strong> Preprod</p>
+              <p><strong>Testeur:</strong> SOUIH Imane</p>
+          </div>
+          <div class="header-divider"></div> <!-- Diviseur pour séparer les deux sections -->
+          <div class="header-summary">
+            <h1 style="margin-left: auto;">Informations Recapitulatives:</h1>
+            <p><strong>Status:</strong>  Tests,  Passed,  Failed</p>
+            <p><strong>Start Time:</strong> 2024-05-17 08:24:34</p>
+            <p><strong>End Time:</strong> 2024-05-17 08:24:41</p>
+           
+        </div>
+      </div>
+    <h2>Total Statistics</h2>
+    <table>
+        <tr>
+            <th>Total Statistics</th>
+            <th>Total Tests</th>
+            <th>Passed</th>
+            <th>Failed</th>
+            <th>Skipped</th>
+        </tr>
+        <tr>
+            <tr>
+                <td>All Tests</td>
+                <td class="total">6</td>
+                <td class="pass">6</td>
+                <td class="fail">0</td>
+                <td class="skip">0</td>
+              </tr>
+        </tr>
+    </table>
+ 
+    <h2>Statistics by Test Suite</h2>
+    <table>
+        <tr>
+            <th>Suite Name</th>
+            <th>Total Tests</th>
+            <th>Passed</th>
+            <th>Failed</th>
+            <th>Skipped</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Elapsed Time</th>
+        </tr>
+        
+        <tr>
+            <td>Api Tests</td>
+            <td>3</td>
+            <td class=" passed">3</td>
+            <td class="">0</td>
+            <td class="">0</td>
+            <td>2024-05-17 08:24:32</td>
+            <td>2024-05-17 08:24:36</td>
+            <td class="elapsed">0:0:4.243</td>
+        </tr>
+        
+        <tr>
+            <td>Get</td>
+            <td>2</td>
+            <td class=" passed">2</td>
+            <td class="">0</td>
+            <td class="">0</td>
+            <td>2024-05-17 08:24:36</td>
+            <td>2024-05-17 08:24:38</td>
+            <td class="elapsed">0:0:1.503</td>
+        </tr>
+        
+        <tr>
+            <td>Test</td>
+            <td>1</td>
+            <td class=" passed">1</td>
+            <td class="">0</td>
+            <td class="">0</td>
+            <td>2024-05-17 08:24:38</td>
+            <td>2024-05-17 08:24:40</td>
+            <td class="elapsed">0:0:2.963</td>
+        </tr>
+        
+    </table>
+ 
+    <h2>Statistics by Test</h2>
+    <div class="button-container">
+        <button class="filterButton passed" onclick="filterTests('Pass')">
+            Passed Tests
+        </button>
+        <button class="filterButton failed" onclick="filterTests('Fail')">
+            Failed Tests
+        </button>
+        <button class="filterButton skipped" onclick="filterTests('Skip')">
+            Skipped Tests
+        </button>
+    </div>
+    <table id="testTable">
+        <tr>
+            <th>Suite nom</th>
+            <th>Test</th>
+            <th>status</th>
+            <th>Message</th>
+            <th>Tags</th>
+        </tr>
+        
+        <tr>
+            <td>Tests.Api Tests</td>
+            <td>Create New Task</td>
+            <td class="status  passed">PASS</td>
+ 
+            <td></td>
+            <td><a href="https://imanesouih.atlassian.net/browse/[]" target="_blank">[]</a></td>
+        </tr>
+        
+        <tr>
+            <td>Tests.Api Tests</td>
+            <td>Get Task Details</td>
+            <td class="status  passed">PASS</td>
+ 
+            <td></td>
+            <td><a href="https://imanesouih.atlassian.net/browse/[]" target="_blank">[]</a></td>
+        </tr>
+        
+        <tr>
+            <td>Tests.Api Tests</td>
+            <td>Validate Task Schema</td>
+            <td class="status  passed">PASS</td>
+ 
+            <td></td>
+            <td><a href="https://imanesouih.atlassian.net/browse/[]" target="_blank">[]</a></td>
+        </tr>
+        
+        <tr>
+            <td>Tests.ApiTests.Get</td>
+            <td>Test Product</td>
+            <td class="status  passed">PASS</td>
+ 
+            <td></td>
+            <td><a href="https://imanesouih.atlassian.net/browse/[]" target="_blank">[]</a></td>
+        </tr>
+        
+        <tr>
+            <td>Tests.ApiTests.Get</td>
+            <td>Test Product By id</td>
+            <td class="status  passed">PASS</td>
+ 
+            <td></td>
+            <td><a href="https://imanesouih.atlassian.net/browse/[]" target="_blank">[]</a></td>
+        </tr>
+        
+        <tr>
+            <td>Tests.Test</td>
+            <td>Test Google in Headless Mode</td>
+            <td class="status  passed">PASS</td>
+ 
+            <td></td>
+            <td><a href="https://imanesouih.atlassian.net/browse/[FT-2, Google, Search]" target="_blank">[FT-2, Google, Search]</a></td>
+        </tr>
+        
+    </table>
+    <script>
+        function filterTests(status) {
+    var rows = document.querySelectorAll("#testTable tr");
+    console.log(rows)
+    rows.forEach(function(row) {
+        var rowStatusCell = row.querySelector('.status');
+        if (rowStatusCell && rowStatusCell.textContent.trim().toUpperCase() === status.toUpperCase()) {
+           
+            row.style.display = "table-row";
+        } else {
+             
+            row.style.display = "none";
+        }
+    });
+}
+        </script>
+ 
+   
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+    "tests": [
+        {
+            "testKey": "FT-2",
+            "suite_name": "Tests.Test",
+            "test_name": "Test Google in Headless Mode",
+            "status": "PASS",
+            "start": "2024-05-20 16:45:37",
+            "finish": "20240520 16:45:44.011",
+            "comment": "",
+            "testeur": "SOUIH Imane",
+            "environment": "Recette"
+        }
+    ],
+    "total_tests": 6,
+    "total_passed": 6,
+    "total_failed": 0,
+    "total_skipped": 0
+}

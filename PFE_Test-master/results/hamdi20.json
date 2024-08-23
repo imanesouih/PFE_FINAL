@@ -1,0 +1,24 @@
+{
+    "info": {
+        "project": "FT",
+        "summary": "Execution calculate tests",
+        "description": "This execution is automatically created when importing execution results from an external source",
+        "user": "imane souieh"
+    },
+    "tests": [
+        {
+            "testKey": "FT-2",
+            "status": "FAIL",
+            "comment": "Element with locator 'id:APjFqb' not found.",
+            "start": "2024-05-03T16:18:54Z",
+            "finish": "2024-05-03T16:19:07Z"
+        },
+        {
+            "testKey": "FT-3",
+            "status": "PASS",
+            "comment": "",
+            "start": "2024-05-03T16:18:54Z",
+            "finish": "2024-05-03T16:19:25Z"
+        }
+    ]
+}

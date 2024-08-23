@@ -1,0 +1,5 @@
+{"level":30,"time":"2024-05-13T13:21:59.267Z","pid":6020,"hostname":"imy","msg":"Listening on 49379"}
+(node:6020) DeprecationWarning: Calling start() is no longer necessary. It can be safely omitted.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+{"level":30,"time":"2024-05-13T13:21:59.778Z","pid":6020,"hostname":"imy","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2024-05-13T13:21:59.780Z","pid":6020,"hostname":"imy","msg":"End of node method getBrowserCatalog"}

@@ -1,0 +1,20 @@
+{
+    "test_cases": [
+        {
+            "tags": [],
+            "name": "Test Google",
+            "status": "PASS",
+            "start_time": "2024-04-04 15:17:10",
+            "end_time": "2024-04-04 15:17:14",
+            "result": "PASSED"
+        },
+        {
+            "tags": [],
+            "name": "Test Site",
+            "status": "PASS",
+            "start_time": "2024-04-04 15:17:15",
+            "end_time": "2024-04-04 15:17:19",
+            "result": "PASSED"
+        }
+    ]
+}

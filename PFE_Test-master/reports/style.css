@@ -1,0 +1,75 @@
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  border: 1px solid #dddddd;
+  padding: 1px;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+p {
+  border-radius: 10px;
+}
+
+.pass {
+  background-color: #8bc34a;
+
+  text-align: center;
+}
+
+.fail {
+  background-color: #ff0000;
+  color: white;
+
+  text-align: center;
+}
+
+.skip {
+  background-color: #ff9800;
+
+  text-align: center;
+}
+
+.filterButton {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.filterButton:hover {
+  background-color: #0056b3;
+}
+
+/* 
+
+*/
+
+.info-recap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info-recap h2 {
+  /* je veux le text en italic */
+  font-style: italic;
+}
+
+.info-recap ul li span {
+  /*  je veux que le text sois bold */
+  font-weight: bold;
+}

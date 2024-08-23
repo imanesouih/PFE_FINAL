@@ -1,0 +1,22 @@
+{
+    "summary": {
+        "info": {
+            "project": "N/A",
+            "summary": "Execution of automated tests for release v1.3",
+            "description": "This execution is automatically created when importing execution results from an external source",
+            "version": "v1.3",
+            "user": "N/A"
+        }
+    },
+    "tests": [
+        {
+            "testKey": "FT-2",
+            "status": "PASS",
+            "start": "2024-05-23 10:50:14",
+            "finish": "20240523 10:50:36.298",
+            "comment": "",
+            "testeur": "N/A",
+            "environment": "N/A"
+        }
+    ]
+}
